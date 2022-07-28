@@ -1,13 +1,22 @@
 <template>
-  <div>
-    <v-toolbar>
-      <v-toolbar-title style="cursor: pointer" @click="$router.push('/')">
-        <v-icon color="pink" size="64px">mdi-video</v-icon>
-        Movie Application
+  <div id="app">
+    <v-app-bar app color="grey darken-4">
+      <v-toolbar-title
+        style="cursor: pointer"
+        class="ml-6"
+        @click="$router.push('/')"
+      >
+        <v-icon color="white" size="50px">mdi-film</v-icon>
+        <span style="font-family: fantasy; font-weight: bold; color: white"
+          >PD.CGV</span
+        >
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <span class="hidden-sm-and-up">
-        <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          style="color: white"
+          @click="drawer = true"
+        ></v-app-bar-nav-icon>
       </span>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn
@@ -15,27 +24,44 @@
           :key="index"
           text
           link
+          color="white"
           :to="item.link"
         >
           {{ item.title }}</v-btn
         >
       </v-toolbar-items>
-      <v-btn icon @click="$nuxt.$emit('openOverlay', true)"
+      <v-btn icon color="white" @click="$nuxt.$emit('openOverlay', true)"
         ><v-icon>mdi-magnify</v-icon></v-btn
       >
-    </v-toolbar>
+    </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary left>
-      <v-list dense nav>
-        <v-list-item
-          v-for="(item, index) in items"
-          :key="index"
-          :to="item.link"
-          link
-        >
-          <v-list-item-content>
-            <v-list-item-title> {{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+      <v-list-item style="background-color: black">
+        <v-list-item-content>
+          <v-list-item-title class="text-h6" style="color: white">
+            MENU
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+      <v-list dense nav shaped>
+        <v-subheader light>Movie</v-subheader>
+        <v-list-item-group v-model="selectedItem" color="primary">
+          <v-list-item
+            v-for="(item, index) in items"
+            :key="index"
+            :to="item.link"
+            color="white"
+            link
+          >
+            <v-list-item-icon>
+              <v-icon color="black" v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
   </div>
@@ -47,9 +73,9 @@ export default {
     return {
       drawer: false,
       items: [
-        { title: 'Movies', link: '/movies' },
-        { title: 'TV Series', link: '/tvseries' },
-        { title: 'Actors', link: '/actors' },
+        { title: 'Movies', link: '/movies', icon: 'mdi-movie' },
+        { title: 'TV Series', link: '/tvseries', icon: 'mdi-television-box' },
+        { title: 'Actors', link: '/actors', icon: 'mdi-star' },
       ],
     }
   },
