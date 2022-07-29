@@ -1,7 +1,7 @@
 <template>
   <v-footer dark padless>
     <v-card flat tile class="flex grey darken-4 white--text text-center">
-      <v-cart-text>
+      <v-card-text>
         <v-btn
           v-for="(item, index) in items"
           :key="index"
@@ -13,7 +13,7 @@
         >
           <v-icon size="24px">{{ item.icon }}</v-icon>
         </v-btn>
-      </v-cart-text>
+      </v-card-text>
       <v-card-text class="white--text">
         © 2022 - {{ new Date().getFullYear() }} Copyright:
         <a

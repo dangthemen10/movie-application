@@ -20,7 +20,7 @@
         <v-list-item
           v-for="item in results"
           :key="item.id"
-          :to="`/movie/${item.id}`"
+          :to="`/movies/detail/${item.id}`"
         >
           <v-list-item-avatar>
             <v-img

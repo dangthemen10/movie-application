@@ -77,7 +77,7 @@
               cols="12"
               sm="3"
             >
-              <v-card :to="`/movie/${recommend.id}`" nuxt>
+              <v-card :to="`/movies/detail/${recommend.id}`" nuxt>
                 <v-img
                   :src="`https://image.tmdb.org/t/p/w300${recommend.poster_path}`"
                 />

@@ -1,16 +1,5 @@
 <template>
   <v-container>
-    <div class="text-center my-4">
-      <v-btn value="popular" class="mr-2" @click="handleGetBy('popular')"
-        >Popular</v-btn
-      >
-      <v-btn value="upcoming" class="mr-2" @click="handleGetBy('upcoming')"
-        >Upcoming</v-btn
-      >
-      <v-btn value="top_rated" class="mr-2" @click="handleGetBy('top_rated')"
-        >Top Rated</v-btn
-      >
-    </div>
     <v-row v-if="$fetchState.pending">
       <v-col v-for="s in 20" :key="s" cols="12" sm="3">
         <v-skeleton-loader type="image, list-item-two-line"></v-skeleton-loader>
@@ -40,7 +29,7 @@ export default {
   data() {
     return {
       movies: [],
-      getBy: 'popular',
+      getBy: this.$route.params.type || 'popular',
       totalResults: 1,
       totalPages: 1,
       currentPage:

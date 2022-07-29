@@ -14,8 +14,8 @@
           delimiter-icon="mdi-minus"
         >
           <v-carousel-item
-            v-for="item in playingItems"
-            :key="item.id"
+            v-for="(item, index) in playingItems"
+            :key="`item${index}-${item.id}`"
             reverse-transition="fade-transition"
             transition="fade-transition"
           >
@@ -32,7 +32,7 @@
                     color="pink"
                     class="white--text"
                     rounded
-                    :to="`/movie/${item.id}`"
+                    :to="`/movies/detail/${item.id}`"
                     >More detail</v-btn
                   >
                 </v-col>

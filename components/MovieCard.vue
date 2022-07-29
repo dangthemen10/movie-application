@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="`/movie/${movie.id}`" nuxt>
+  <v-card :to="`/movies/detail/${movie.id}`" nuxt>
     <v-img
       height="300"
       :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"

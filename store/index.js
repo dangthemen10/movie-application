@@ -44,13 +44,13 @@ export const actions = {
         nextPages++
       }
 
-      // const nowPlaying = []
-      // while (nowPlaying.length < 5) {
-      //   const getValueRandom = Math.floor(Math.random() * result.length)
-
-      //   nowPlaying.push.apply(result[getValueRandom])
-      // }
-      commit('SET_NOWPLAYING', result)
+      const nowPlaying = []
+      while (nowPlaying.length < 5) {
+        const getValueRandom = Math.floor(Math.random() * result.length)
+        nowPlaying.push(result[getValueRandom])
+        result.pop(result[getValueRandom])
+      }
+      commit('SET_NOWPLAYING', nowPlaying)
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error)

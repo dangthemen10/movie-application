@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <SectionTitle title="Popular" link="/movies" />
+    <SectionTitle title="Popular" link="popular" />
     <SectionMovies v-if="movies.length" :movies="movies" />
-    <SectionTitle title="Upcoming" link="/movies" />
+    <SectionTitle title="Upcoming" link="upcoming" />
     <SectionMovies v-if="upcoming.length" :movies="upcoming" />
   </v-container>
 </template>

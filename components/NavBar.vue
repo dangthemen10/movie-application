@@ -46,7 +46,7 @@
       <v-divider></v-divider>
       <v-list dense nav shaped>
         <v-subheader light>Movie</v-subheader>
-        <v-list-item-group v-model="selectedItem" color="primary">
+        <v-list-item-group color="primary">
           <v-list-item
             v-for="(item, index) in items"
             :key="index"
