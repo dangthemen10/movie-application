@@ -18,6 +18,7 @@
           @click="drawer = true"
         ></v-app-bar-nav-icon>
       </span>
+      <Genre />
       <v-toolbar-items class="hidden-xs-only">
         <v-btn
           v-for="(item, index) in items"
@@ -61,6 +62,32 @@
               <v-list-item-title v-text="item.title"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-expansion-panels multiple>
+            <v-expansion-panel>
+              <v-expansion-panel-header>Genres</v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-card class="flex-grow-0">
+                  <v-virtual-scroll
+                    id="scroll-bar"
+                    :items="genres"
+                    height="300"
+                    width="200"
+                    item-height="45"
+                  >
+                    <template #default="{ item }">
+                      <v-list-item :key="item.id" dense to="/">
+                        <v-list-item-content>
+                          <v-list-item-title
+                            v-text="item.name"
+                          ></v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </template>
+                  </v-virtual-scroll>
+                </v-card>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -68,7 +95,9 @@
 </template>
 
 <script>
+import Genre from './Genre.vue'
 export default {
+  components: { Genre },
   data() {
     return {
       drawer: false,
@@ -77,7 +106,12 @@ export default {
         { title: 'TV Series', link: '/tvseries', icon: 'mdi-television-box' },
         { title: 'Actors', link: '/actors', icon: 'mdi-star' },
       ],
+      genres: [],
+      panel: [0, 1],
     }
+  },
+  mounted() {
+    this.genres = this.$store.state.genres
   },
 }
 </script>

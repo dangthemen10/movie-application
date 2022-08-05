@@ -31,6 +31,16 @@
         @click="handleGetBy('top_rated')"
         >Top Rated</v-btn
       >
+      <v-btn
+        value="now_playing"
+        class="mr-2"
+        retain-focus-on-click
+        outlined
+        rounded
+        color="info"
+        @click="handleGetBy('now_playing')"
+        >Now Playing</v-btn
+      >
     </div>
     <v-row v-if="$fetchState.pending">
       <v-col v-for="s in 20" :key="s" cols="12" sm="3">

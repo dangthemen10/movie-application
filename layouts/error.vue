@@ -1,12 +1,44 @@
 <template>
   <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/"> Home page </NuxtLink>
+    <div class="NotFound">
+      <v-container>
+        <v-layout row wrap>
+          <v-flex xs12>
+            <v-card
+              v-if="error.statusCode === 404"
+              height="400"
+              color="transparent"
+              flat
+            >
+              <div class="display-3 mt-5">{{ pageNotFound }}</div>
+              <div class="grey--text lighten-5">
+                The page you are trying to get to never existed in this reality,
+                or has migrated to a parallel universe.
+              </div>
+              <div class="paragraph-text mt-2">
+                <br />
+                <br />Try going back to home page and repeating your action. Or,
+                contact helpdesk for support.
+              </div>
+              <NuxtLink to="/"> Home page </NuxtLink>
+            </v-card>
+            <v-card v-else height="400" color="transparent" flat>
+              <div class="display-3 mt-5">{{ pageNotFound }}</div>
+              <div class="grey--text lighten-5">
+                The page you are trying to get to never existed in this reality,
+                or has migrated to a parallel universe.
+              </div>
+              <div class="paragraph-text mt-2">
+                <br />
+                <br />Try going back to home page and repeating your action. Or,
+                contact helpdesk for support.
+              </div>
+              <NuxtLink to="/"> Home page </NuxtLink>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -38,5 +70,8 @@ export default {
 <style scoped>
 h1 {
   font-size: 20px;
+}
+.paragraph-text {
+  font-size: 18px;
 }
 </style>

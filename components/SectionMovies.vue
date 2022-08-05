@@ -11,7 +11,7 @@
       >
     </v-overlay>
     <v-row justify="center">
-      <v-col v-for="movie in movies" :key="movie.id" cols="12" sm="4">
+      <v-col v-for="movie in movies" :key="movie.id" cols="6" sm="3">
         <MovieCard :movie="movie" />
       </v-col>
     </v-row>
@@ -39,9 +39,12 @@ export default {
       if (this.value === 100) {
         this.loading = false
         return (this.value = 0)
+      } else if (this.value < 50) {
+        this.value += 25
+      } else {
+        this.value += 10
       }
-      this.value += 10
-    }, 200)
+    }, 400)
   },
 }
 </script>

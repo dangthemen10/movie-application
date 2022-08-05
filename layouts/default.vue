@@ -41,9 +41,12 @@ export default {
       if (this.value === 100) {
         this.loading = false
         return (this.value = 0)
+      } else if (this.value < 50) {
+        this.value += 25
+      } else {
+        this.value += 10
       }
-      this.value += 10
-    }, 200)
+    }, 400)
   },
   created() {
     this.$nuxt.$on('openOverlay', ($event) => (this.overlay = $event))
