@@ -18,7 +18,7 @@
           @click="drawer = true"
         ></v-app-bar-nav-icon>
       </span>
-      <Genre />
+      <GenreBar />
       <v-toolbar-items class="hidden-xs-only">
         <v-btn
           v-for="(item, index) in items"
@@ -95,9 +95,9 @@
 </template>
 
 <script>
-import Genre from './Genre.vue'
+import GenreBar from './GenreBar.vue'
 export default {
-  components: { Genre },
+  components: { GenreBar },
   data() {
     return {
       drawer: false,

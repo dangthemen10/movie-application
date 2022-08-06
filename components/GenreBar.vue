@@ -2,11 +2,27 @@
   <v-menu open-on-hover transition="scale-transition" offset-y>
     <template #activator="{ attrs, on }">
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn color="white" text v-bind="attrs" v-on="on"> Genres </v-btn>
+        <v-btn
+          v-bind="attrs"
+          v-model="isHover"
+          color="white"
+          text
+          @mouseover="isHover = true"
+          @mouseleave="isHover = false"
+          v-on="on"
+        >
+          Genres
+          <v-icon v-if="!isHover" right dark> mdi-menu-down </v-icon>
+          <v-icon v-else right dark> mdi-menu-up </v-icon>
+        </v-btn>
       </v-toolbar-items>
     </template>
 
-    <v-card class="flex-grow-0">
+    <v-card
+      class="flex-grow-0"
+      @mouseover="isHover = true"
+      @mouseleave="isHover = false"
+    >
       <v-list dense flat>
         <v-virtual-scroll
           id="scroll-bar"
@@ -34,6 +50,7 @@
 export default {
   data: () => ({
     genres: {},
+    isHover: false,
   }),
   mounted() {
     this.genres = this.$store.state.genres
