@@ -1,37 +1,37 @@
 <template>
-  <div v-if="loading" class="loading-page">
-    <p>Loading...</p>
-  </div>
+  <v-overlay opacity="0.95" :value="loading">
+    <v-progress-circular
+      :rotate="360"
+      :size="100"
+      :width="15"
+      :value="value"
+      color="green accent-3"
+      >{{ value }}</v-progress-circular
+    >
+  </v-overlay>
 </template>
 
 <script>
 export default {
-  data: () => ({
-    loading: false,
-  }),
-  methods: {
-    start() {
-      this.loading = true
-    },
-    finish() {
-      this.loading = false
-    },
+  data() {
+    return {
+      loading: true,
+      value: 0,
+    }
+  },
+  mounted() {
+    setInterval(() => {
+      if (this.value === 100) {
+        this.loading = false
+        return (this.value = 0)
+      } else if (this.value < 50) {
+        this.value += 25
+      } else {
+        this.value += 10
+      }
+    }, 400)
   },
 }
 </script>
 
-<style scoped>
-.loading-page {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding-top: 200px;
-  font-size: 30px;
-  font-family: sans-serif;
-  z-index: 1;
-}
-</style>
+<style></style>

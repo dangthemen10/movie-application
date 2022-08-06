@@ -1,11 +1,15 @@
 export const state = () => ({
   genres: [],
   now_playing: [],
+  genres_tv: [],
 })
 
 export const mutations = {
   SET_GENRES(state, genres) {
     state.genres = genres
+  },
+  SET_GENRESTV(state, genresTv) {
+    state.genres_tv = genresTv
   },
   SET_NOWPLAYING(state, data) {
     state.now_playing = data
@@ -51,6 +55,17 @@ export const actions = {
         result.pop(result[getValueRandom])
       }
       commit('SET_NOWPLAYING', nowPlaying)
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error)
+    }
+  },
+  async loadGenresTV({ state, commit }) {
+    try {
+      const response = await this.$axios.$get('/genre/tv/list')
+      if (response) {
+        commit('SET_GENRESTV', response.genres)
+      }
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error)

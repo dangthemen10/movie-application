@@ -1,15 +1,6 @@
 <template>
   <div>
-    <v-overlay opacity="0.95" :value="loading">
-      <v-progress-circular
-        :rotate="360"
-        :size="100"
-        :width="15"
-        :value="value"
-        color="green accent-3"
-        >{{ value }}</v-progress-circular
-      >
-    </v-overlay>
+    <LoadingBar />
     <v-row justify="center">
       <v-col v-for="movie in movies" :key="movie.id" cols="6" sm="3">
         <MovieCard :movie="movie" />
@@ -19,7 +10,9 @@
 </template>
 
 <script>
+import LoadingBar from './LoadingBar.vue'
 export default {
+  components: { LoadingBar },
   props: {
     movies: {
       type: Array,
@@ -33,18 +26,6 @@ export default {
       loading: true,
       value: 0,
     }
-  },
-  mounted() {
-    setInterval(() => {
-      if (this.value === 100) {
-        this.loading = false
-        return (this.value = 0)
-      } else if (this.value < 50) {
-        this.value += 25
-      } else {
-        this.value += 10
-      }
-    }, 400)
   },
 }
 </script>
